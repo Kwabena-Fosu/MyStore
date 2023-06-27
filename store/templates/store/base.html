@@ -53,18 +53,23 @@
         </div>
         <div class="d-flex align-items-center nav-item mb-2 mb-md-0">
           <div>
-            <form class=" d-flex" role="search">
+            <form class="d-flex" action="{% url 'search'  %}" role="search" method="get">
                 <div class="input-group ms-3">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="search" name="keyword">
                   <button class="nav-search btn border shadow-0" type="submit">
-                    <i class=" fas fas fa-search" ></i>
+                    <i class="fas fas fa-search" ></i>
                   </button>
                 </div>
             </form>
           </div>
           <div class="">
-            <a class="nav-cart nav-icon btn m-2" href="{% url 'cart'  %}">
-              <i class="fas fa-shopping-cart m-1"></i> 
+            <a class="" href="{% url 'cart'  %}">
+              <div class="nav-cart nav-icon btn m-2 position-relative">
+                <i class="fas fa-shopping-cart m-1"></i> 
+                <span class="text-dark position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light">
+                  {{ cart_count }}
+                </span>
+              </div>
             </a>
           </div>
         </div>

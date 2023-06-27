@@ -3,14 +3,18 @@
 <div class="page store ">
    <div class="page-cover">
       <h1>
-        <i class="fas fa-store"></i>  Store
+        {% if 'search' in request.path %}
+          <i class="me-2 fas fas fa-search"></i>  Search Result
+        {% else %}
+          <i class="me-2 fas fa-store"></i>  Store
+        {% endif %}
       </h1>
    </div>
 </div>
 <div class="container">
   <div class="row">
       <!-- Categories Start -->
-      <div class="col-md-3 pt-2 sticky-column">
+      <div class="col-md-3 pt-2  text-center sticky-column">
         <div class="">
           <div class="accordion my-3">
             <div class="accordion-item">
@@ -71,11 +75,12 @@
       <!-- Categories End -->
   
       <!-- Products Start -->
-      <div class="col-md-9 pt-3 container">
+      <div class="col-md-9 pt-3 ">
           <div class="border-bottom mb-4">
               <h6 class="section-title px-3">Found {{ product_count }} product(s)</h6>
           </div>
           <div class="row justify-content-center pb-3">
+            {% if products %}              
               {% for product in products %}
               <div class="col-lg-3 col-md-4 col-12 px-4 px-md-2">
                 <div class="card product-item mb-4">
@@ -99,8 +104,8 @@
                           </h5>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <a class="btn cart-button" href="">
-                            <i class="me-1 fas fas fa-cart-plus"></i> Add to Cart
+                        <a class="btn cart-button" href="{{ product.get_url }}">
+                            <i class="me-1 far fa-eye"></i> View Details
                         </a>
                       </div>
                     </div>
@@ -119,10 +124,49 @@
                   </div>
               </div>  
               {% endfor %}
+            {% else %}
+              <div class="text-center" style="font-family: serif;">
+                <h4>No result found. Please try again.</h4>                
+              </div>
+            {% endif %}
               
+          </div>
+          <div class="container d-flex my-4 text-center">
+            {% if products.has_other_pages %}
+              {% if products.has_previous %}
+              <div class="me-1">
+                <a href="?page=1" class="btn cart-app-btn  me-1">First</a>
+              </div>
+              <div class="me-1">
+                <a href="?page={{ products.previous_page_number }}" class="btn cart-app-btn  me-1">Previous</a>
+              </div>
+              {% endif %}
+              
+              {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                <div class="me-1">
+                  <a href="?page={{ num }}" class="btn cart-detail-button  me-1">{{ num }}</a>
+                </div>
+                {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                  <div class="me-1">
+                    <a href="?page={{ num }}" class="btn cart-app-btn  me-1">{{ num }}</a>
+                  </div>
+                {% endif %}
+              {% endfor %}
+        
+              {% if products.has_next %}
+                <div class="me-1">
+                  <a href="?page={{ products.next_page_number }}" class="btn cart-app-btn ">Next</a>
+                </div>
+                <div class="me-1">
+                  <a href="?page={{ products.paginator.num_pages }}" class="btn cart-app-btn ">Last</a>
+                </div>
+              {% endif %}
+            {% endif %}
           </div>
       </div>
       <!-- Products End -->
   </div>
 </div>
+
 {% endblock content %}

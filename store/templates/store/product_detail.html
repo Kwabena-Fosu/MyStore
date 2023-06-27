@@ -2,14 +2,16 @@
 {% load static %}
 {% block content %}
 <section class="">
-    <div class="container p-2 py-5">
-      <div class="row detail-card border rounded-3 g-0">
-        <aside class="col-lg-6 p-3">
-          <div class="d-flex justify-content-center">
-            <img style="max-width: 100%; max-height: 100vh; margin: auto;" class=" rounded-3 fit" src="{{ single_product.image.url }}" />            
-          </div>
-        </aside>
-        <div class="col-lg-6">
+  <div class="container p-2 py-5">
+    <div class="row detail-card border rounded-3 g-0">
+      <aside class="col-lg-6 p-3">
+        <div class="d-flex justify-content-center">
+          <img style="max-width: 100%; max-height: 100vh; margin: auto;" class=" rounded-3 fit" src="{{ single_product.image.url }}" />            
+        </div>
+      </aside>
+      <div class="col-lg-6">
+        <form action="{% url 'add_cart' single_product.id %}" method="POST">
+          {% csrf_token %}
           <div class="px-5 py-4">
             <div class="text-end mb-2 p-detail-cat small">
               {{ single_product.category }}
@@ -45,43 +47,44 @@
             <hr />
   
             <div class="row mb-3">
+              <!-- col 1 -->
               <div class="col-md-4 col-12">
-                <label class="mb-2">Size</label>
-                <select class="form-select border border-secondary" >
-                  <option class="mb-3">Small</option>
-                  <option class="mb-1">Medium</option>
-                  <option class="mb-1">Large</option>
+                <label class="fw-bold mb-2">Select Colour</label>
+                <select name="color" class="form-select border border-secondary" required>
+                  <option value="" disabled selected>Select</option>
+                  {% for i in single_product.variation_set.colors %}                    
+                  <option value="{{ i.variation_value|lower }}" class="mb-3">{{ i.variation_value|capfirst }}</option>
+                  {% endfor %}
                 </select>
               </div>
-              <!-- col.// -->
-              <div class="col-md-4 col-12 mb-3">
-                <label class="mb-2 d-block">Quantity</label>
-                <div class="input-group" style="width: 170px;">
-                  <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <input type="text" class="form-control text-center border border-secondary" placeholder="1" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                  <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                </div>
+              
+              <!-- col 2 -->
+              <div class="col-md-4 col-12">
+                <label class="fw-bold mb-2">Select Size</label>
+                <select name="size" class="form-select border border-secondary" required>
+                  <option value="" disabled selected>Select</option>
+                  {% for i in single_product.variation_set.sizes %}                    
+                    <option value="{{ i.variation_value|lower }}" class="mb-3">{{ i.variation_value|capfirst }}</option>
+                  {% endfor %}
+                </select>
               </div>
-              <hr />
             </div>
+            <hr />
             {% if single_product.stock <= 0 %}
               <h5 class="text-danger" >Out of Stock</h5>
               {% else %}
                 <div class="mb-3">
-                  <a class="btn cart-detail-button" href="{% url 'add_cart' single_product.id %}">
-                    <i class="me-2 fas fas fa-cart-plus"></i> Add to Cart
-                  </a>
+                  <button type="submit" class="btn px-4 py-2 cart-detail-button" >
+                    <i class="me-2 fas fa-cart-plus"></i> Add to Cart
+                  </button>
                 </div>
             {% endif %}
-        </div>
+          </div>
+        </form>
       </div>
     </div>
-    </div>
-  </section>
+  </div>
+</section>
   <!-- content -->
   
 {% endblock content %}

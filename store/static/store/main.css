@@ -8,7 +8,7 @@ footer {
 }
 
 body {
-    font-family: 'Quicksand'!important;
+    font-family: 'Roboto'!important;
     background-color: whitesmoke!important;
 }
 
@@ -20,6 +20,11 @@ a {
 
 table {
     text-wrap: nowrap!important;
+}
+
+.table-div {
+    background-color: #E8EAEE;
+    border-radius: 7px!important;
 }
 
 .nav-icon {
@@ -114,7 +119,7 @@ nav{
 }
 
 .things {
-    font-family: Poppins;
+    font-family: serif;
     color: whitesmoke;
     position: absolute;
     left: 0%;
@@ -134,25 +139,17 @@ nav{
     color: #FFC49B!important;
     border: 1px solid #FFC49B!important;
 }
-
-.sticky-column {
-    position: sticky;
-    top: 0;
-    height: 100vh; /* Adjust as needed */
-    overflow-y: auto; /* Enable scrolling */
-}
   
+.landing-btn:hover {
+    text-decoration: none!important;
+    color: #294C60!important;
+    background-color: #FFC49B!important;
+}
 
 .products-btn {
     font-weight: 500!important;
     color: whitesmoke!important;
     background-color: #3c6f62!important;
-}
-
-.landing-btn:hover {
-    text-decoration: none!important;
-    color: #294C60!important;
-    background-color: #FFC49B!important;
 }
 
 .products-btn:hover {
@@ -175,8 +172,8 @@ nav{
 
 .p-price {
     font-weight: 600;
-    font-family: 'Playfair Display';
-    color: #ECE4C1;
+    font-family: 'Playfair Display'!important;
+    color: #ECE4C1!important;
 }
 
 .p-detail-price {
@@ -217,7 +214,7 @@ nav{
     background-color: #FFC49B!important;
 }
 .cart-detail-button {
-    padding: 10px!important;
+    /* padding: 10px!important; */
     color: #E8EAEE!important;
     background-color: #294C60!important;
 }
@@ -226,6 +223,40 @@ nav{
     text-decoration: none!important;
     color: #E8EAEE!important;
     background-color: #001B2E!important;
+}
+
+.cart-app-btn {
+    color: #294C60!important;
+    border: 1px solid #294C60!important;
+}
+
+.cart-app-btn:hover {
+    color: whitesmoke!important;
+    background-color: #294C60!important;
+}
+
+.small{
+    font-size: 12px!important;
+}
+
+.cart-app-hdr {
+    font-weight: 700;
+    font-family: 'Playfair Display';
+    color: #FFC49B!important;
+    background-color: #5DAC98!important;
+}
+
+.cart-app-ftr {
+    font-weight: 700;
+    background-color: #E8EAEE!important;
+}
+
+.cart-app-p-name {
+    font-family: 'Playfair Display';
+}
+
+.cart-empty {
+    font-family: serif;
 }
 
 .accordion-button {
@@ -299,7 +330,7 @@ nav{
 }
 
 .featured-name {
-    font-family: 'Poppins';
+    font-family: serif;
     font-size: 70px;
     font-weight: 700;
     color: #001B2E;
@@ -342,19 +373,19 @@ nav{
     border: 3px solid #294C60;
 }
 
-.section-title {
-    color: rgb(53, 46, 37);
-}
-
 .product-item {
     border-radius: 10px;
     transition: transform .5s ease;
-    box-shadow: 3px 3px 20px gray!important;
+    box-shadow: 1px 1px 20px gray!important;
 }
 
 .product-item:hover {
     box-shadow: 5px 5px 25px gray!important;
     transform: scale(1.05);
+}
+
+.product-img{
+    border-radius: 10px 10px 0px 0px!important;
 }
 
 @media screen and (max-width: 810px) and (min-width: 641px) {
