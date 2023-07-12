@@ -134,6 +134,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         pass #just ignore
 
     context = {
+        'title': 'Cart',
         'total': total,
         'quantity':quantity,
         'cart_items':cart_items,

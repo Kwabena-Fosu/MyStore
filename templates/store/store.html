@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page store ">
+   <div class="page-cover">
+      <h1>
+        {% if 'search' in request.path %}
+          <i class="me-2 fas fas fa-search"></i>  Search Result
+        {% else %}
+          <i class="me-2 fas fa-store"></i>  Store
+        {% endif %}
+      </h1>
+   </div>
+</div>
+<div class="container">
+  <div class="row">
+      <!-- Categories Start -->
+      <div class="col-md-3 pt-2  text-center sticky-column">
+        <div class="">
+          <div class="accordion my-3">
+            <div class="accordion-item">
+              <h1 class="accordion-header" >
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Categories
+                </button>
+              </h1>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body ">
+                  <a href="{% url 'store' %}">
+                    <div class="">
+                        <div class="cat-item-all cat-item-store d-flex flex-column mb-1" >
+                            <h6 class="cat-title-store font-weight-semi-bold m-0">All Products</h6>
+                        </div>
+                    </div> 
+                  </a>
+                    {% for category in links %}
+                    <a href="{{ category.get_url }}">
+                      <div class="">
+                          <div class="cat-item-store d-flex flex-column mb-1" style="background-image: url({{ category.image.url }})">
+                              <h6 class="cat-title-store font-weight-semi-bold m-0">{{ category.name }}</h6>
+                          </div>
+                      </div> 
+                    </a>
+                    {% endfor %}                      
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h4 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Sizes
+                </button>
+              </h4>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h4 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Price Range
+                </button>
+              </h4>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Categories End -->
+  
+      <!-- Products Start -->
+      <div class="col-md-9 pt-3 ">
+          <div class="border-bottom mb-4">
+              <h6 class="section-title px-3">Found {{ product_count }} product(s)</h6>
+          </div>
+          <div class="row justify-content-center pb-3">
+            {% if products %}              
+              {% for product in products %}
+              <div class="col-lg-3 col-md-4 col-12 px-4 px-md-2">
+                <div class="card product-item mb-4">
+                    <div class="card-header p-0">
+                      <img class="img-fluid w-100" src="{{ product.image.url }}" alt="" >
+                    </div>
+                    <div class="card-body pd">
+                      <div class="mb-2 p-cat small">
+                        {{ product.category }}
+                      </div>
+                      <div class="mb-1 d-flex justify-content-center">
+                          <div class="text-truncate p-name mb-0 ">
+                              <a class=" py-3 " href="{{ product.get_url }}" title="{{ product.product_name }}">
+                                  {{ product.product_name }}
+                              </a>
+                          </div>
+                      </div>
+                      <div class="mb-4 d-flex justify-content-center">
+                          <h5 class="p-price mb-0">
+                              <i class="card-icon fas fa-tag"></i>${{ product.price }}
+                          </h5>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <a class="btn cart-button" href="{{ product.get_url }}">
+                            <i class="me-1 far fa-eye"></i> View Details
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                        <div class=" mb-2">
+                            <div class=" mb-0">Available: <span class="fw-bold">{{ product.stock }}</span></div>
+                            <div class="ms-auto align-items-end text-warning">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+              </div>  
+              {% endfor %}
+            {% else %}
+              <div class="text-center" style="font-family: serif;">
+                <h4>No result found. Please try again.</h4>                
+              </div>
+            {% endif %}
+              
+          </div>
+          <div class="container d-flex my-4 justify-content-center">
+            {% if products.has_other_pages %}
+              {% if products.has_previous %}
+              <div class="me-1">
+                <a href="?page=1" class="btn cart-app-btn  me-1">First</a>
+              </div>
+              <div class="me-1">
+                <a href="?page={{ products.previous_page_number }}" class="btn cart-app-btn  me-1">Previous</a>
+              </div>
+              {% endif %}
+              
+              {% for num in products.paginator.page_range %}
+                {% if products.number == num %}
+                <div class="me-1">
+                  <a href="?page={{ num }}" class="btn cart-detail-button  me-1">{{ num }}</a>
+                </div>
+                {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                  <div class="me-1">
+                    <a href="?page={{ num }}" class="btn cart-app-btn  me-1">{{ num }}</a>
+                  </div>
+                {% endif %}
+              {% endfor %}
+        
+              {% if products.has_next %}
+                <div class="me-1">
+                  <a href="?page={{ products.next_page_number }}" class="btn cart-app-btn ">Next</a>
+                </div>
+                <div class="me-1">
+                  <a href="?page={{ products.paginator.num_pages }}" class="btn cart-app-btn ">Last</a>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+      </div>
+      <!-- Products End -->
+  </div>
+</div>
+
+{% endblock content %}

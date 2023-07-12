@@ -1,0 +1,484 @@
+.main {
+    margin-top: 70px!important;
+}
+
+footer {
+    background-color: #294C60!important;
+    color: whitesmoke!important;
+}
+
+body {
+    font-family: 'Poppins'!important;
+    font-weight: 400;
+    background-color: whitesmoke!important;
+}
+
+a {
+    text-decoration: none!important;
+    display: inline!important;
+    color: inherit!important;
+}
+
+table {
+    text-wrap: nowrap!important;
+}
+
+.table-div {
+    background-color: #E8EAEE;
+    border-radius: 7px!important;
+}
+
+.nav-icon {
+    /* font-weight: 500!important; */
+    /* font-family: 'Times New Roman', Times, serif!important; */
+    color:  whitesmoke!important;
+}
+
+.nav-icon:hover {
+    color:  #FFC49B!important;
+}
+
+.main-nav {
+    color: whitesmoke;
+    background: linear-gradient(0deg,#ffffff00, 10%,  #001B2E) !important;
+}
+
+.dropdown-menu {
+    background-color: hsla(202, 40%, 27%, 0.9)!important;
+}
+
+.nav-search {
+    color: whitesmoke!important;
+}
+
+.nav-search:hover {
+    color: whitesmoke!important;
+    background-color: #001B2E!important;
+}
+
+.nav-cart {
+    padding: 0.6rem!important;
+    color: whitesmoke!important;
+    background-color: #001B2E!important;
+}
+
+.nav-cart:hover {
+    color: #001B2E!important;
+    background-color: whitesmoke!important;
+}
+
+.page{
+    /* margin-top: 70px; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.store {    
+    background-image: url(../photos/store1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cart {    
+    background-image: url(../photos/cart1.jpg);
+}
+
+.page-cover {
+    color: rgb(195, 225, 252);
+    font-family: 'Playfair Display';
+    padding: 8rem;
+    background-color: rgba(69, 59, 47, 0.501)!important;
+}
+
+.page-cart {
+    color: rgb(252, 240, 195);
+}
+
+
+.my {
+    border: 1px double rgb(193, 213, 163);
+    background-color: whitesmoke!important;
+    color: #001B2E;
+    padding: 10px;
+    font-family: 'Playfair Display';
+    font-size: 20px;
+    text-shadow: 1.5px 3px #5DAC98;
+}
+
+.landing {
+    color: whitesmoke;
+    background-image: url(../photos/bg.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    overflow: hidden;
+}
+
+.landing-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #050a0c, #00000000);
+}
+
+
+.landing-title {
+    font-family: serif;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+
+.landing-btn {
+    font-weight: 500!important;
+    color: #FFC49B!important;
+    border: 1px solid #FFC49B!important;
+}
+  
+.landing-btn:hover {
+    text-decoration: none!important;
+    color: #294C60!important;
+    background-color: #FFC49B!important;
+}
+
+.products-btn {
+    font-weight: 500!important;
+    color: whitesmoke!important;
+    background-color: #3c6f62!important;
+}
+
+.products-btn:hover {
+    text-decoration: none!important;
+    background-color: #5DAC98!important;
+}
+
+.pd {
+    background-color: #3c6f62!important;
+}
+
+.card-footer {
+    color: #294C60!important;
+}
+
+.detail-card {
+    background-color: #E8EAEE!important;
+    color: #001B2E!important;
+}
+
+.p-price {
+    font-weight: 600;
+    font-family: 'Playfair Display'!important;
+    color: #ECE4C1!important;
+}
+
+.p-detail-price {
+    font-weight: 800;
+    font-family: 'Merriweather';
+    color: #5DAC98!important;
+}
+
+.p-cat {
+    color: #FFC49B!important;
+}
+
+.p-detail-cat {
+    color: #ff6a00!important;
+}
+
+.p-detail-name {
+    font-family: 'Playfair Display';
+    color: #001B2E!important;
+    font-weight: 800!important;
+}
+
+.p-name {
+    font-family: 'Playfair Display';
+    color: whitesmoke!important;
+    font-weight: 550!important; 
+    font-size: x-large;
+}
+
+.cart-button {
+    color: #FFC49B!important;
+    border: 1px solid #FFC49B!important;
+}
+
+.cart-button:hover {
+    text-decoration: none!important;
+    color: #294C60!important;
+    background-color: #FFC49B!important;
+}
+.cart-detail-button {
+    /* padding: 10px!important; */
+    color: #E8EAEE!important;
+    background-color: #294C60!important;
+}
+
+.cart-detail-button:hover {
+    text-decoration: none!important;
+    color: #E8EAEE!important;
+    background-color: #001B2E!important;
+}
+
+.cart-app-btn {
+    color: #294C60!important;
+    border: 1px solid #294C60!important;
+}
+
+.cart-app-btn:hover {
+    color: whitesmoke!important;
+    background-color: #294C60!important;
+}
+
+
+.small{
+    font-size: 12px!important;
+}
+
+.cart-app-hdr {
+    font-weight: 700;
+    font-family: 'Playfair Display';
+    color: #FFC49B!important;
+    background-color: #5DAC98!important;
+}
+
+.cart-app-ftr {
+    font-weight: 700;
+    background-color: #E8EAEE!important;
+}
+
+.cart-app-p-name {
+    font-family: 'Playfair Display';
+}
+
+.cart-empty {
+    font-family: serif;
+}
+
+.accordion-button {
+    background-color: #F1F6F9!important;
+    font-weight: 570!important;
+    color: #294C60!important;
+
+}
+
+.a-title {
+    padding: 3vh 10px 1vh 10px;
+    font-family: Poppins;
+    color: whitesmoke;
+    background: linear-gradient(0deg, #294C60, #00000000);
+    border-radius: 0px 0px 10px 10px;
+}
+
+.cat-title {
+    padding: 12vh 10px 1vh 10px;
+    font-family: Poppins;
+    color: whitesmoke;
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(0deg, #294C60, #00000000);
+}
+
+
+.cat-title-store {
+    padding: 5vh 10px 1vh 10px;
+    font-family: Poppins;
+    color: #F5E6E1;
+    border-radius: 0 0 5px 5px;
+    background: linear-gradient(0deg, #294C60, #00000000);
+}
+
+.cat-item {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    transition: transform .5s ease;
+    box-shadow: 3px 3px 20px gray!important;
+}
+
+.cat-item-all {
+    background-image: url(../photos/backg.jpg);
+}
+
+.cat-item-store {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: transform .5s ease;
+    border-radius: 5px;
+}
+
+.cat-item:hover {
+    transform: scale(1.05);
+}
+
+.cat-item-store:hover {
+    transform: scale(1.05);
+}
+
+.card-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.featured {
+    /* background: radial-gradient(#e7fff9, #3c6f62); */
+}
+
+.featured-name {
+    font-family: serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: #001B2E;
+}
+
+.featured-btn {
+    font-weight: 500!important;
+    color: whitesmoke!important;
+    background-color: #3c6f62!important;
+}
+
+.featured-image {
+    width: 80%; 
+    height: 80%; 
+    border-radius: 50%;
+    z-index: 1;
+    border: 3px solid #001B2E;
+    padding: 3px;
+    box-shadow: hsla(66, 33%, 38%, 0.494) 50px 50px, 
+    hsla(205, 100%, 9%, 0.5) -50px 50px, 
+    hsla(300, 58%, 58%, 0.54) 50px -50px, 
+    hsla(165, 32%, 52%, 0.518) -50px -50px;
+}
+
+.testimonial {
+    border-radius: 10px;
+    color: #3c6f62;
+    background-color: whitesmoke;
+    height: 100%;
+    box-shadow: 0px 0px 15px gray!important;
+}
+
+.testimonial-p {
+    font-family: sans-serif;
+    font-size: medium;
+}
+
+.testimonial-icon {
+    font-size: 40px;
+    color: #FFC49B;
+}
+
+.testimonial-title {
+    font-family: 'Playfair Display';
+    color: #001B2E;
+    font-weight: 560;
+}
+
+.testimonial-img{
+    padding: 3px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid #294C60;
+}
+
+.product-item {
+    border-radius: 10px;
+    transition: transform .5s ease;
+    box-shadow: 1px 1px 20px gray!important;
+}
+
+.product-item:hover {
+    box-shadow: 5px 5px 25px gray!important;
+    transform: scale(1.05);
+}
+
+.product-img{
+    border-radius: 10px 10px 0px 0px!important;
+}
+
+/* @media screen and (max-width: 810px) and (min-width: 641px) {
+   #search{
+    width: 150px;
+   }
+  } */
+
+.register-header {
+    font-family: 'Playfair Display';
+    color: #001B2E!important;
+}
+
+label {
+    color: #001B2E!important;
+}
+
+.register-form {
+    background-color: whitesmoke;
+    border-radius: 10px!important;
+}
+
+.login-form {
+    background-color: whitesmoke;
+    border-radius: 10px!important;
+}
+
+.register-page {
+    border-radius: 10px!important;
+    border: 1px solid #3c6f62!important;
+}
+
+.login-page {
+    background: url(../photos/login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.login-p2 {
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(202, 40%, 27%, 0.499);
+}
+
+.register-pic {
+    background: url(../photos/login.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 0px 0px 10px!important;
+}
+
+.register-inner {
+    width: 100%;
+    height: 100%;
+    color: whitesmoke;
+    border-radius: 10px 0px 0px 10px!important;
+    background-color: hsla(205, 100%, 9%, 0.497);
+}
+
+.pro-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+  
+.b-primary {
+    color: whitesmoke!important;
+    background-color: #001B2E!important;
+}
+
+.list-group-item.active {
+    background-color: #3c6f62!important;
+    color: #ECE4C1!important;
+    font-weight: 500;
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: transparent!important;
+}

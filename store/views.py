@@ -1,6 +1,7 @@
 import random
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.db.models import Q
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Product, Testimonial
 from category.models import Category
@@ -13,22 +14,27 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def home(request):
 
-    featured = Product.objects.get(id=10)
-
-    total_products = Product.objects.count()
+    total_products = Product.objects.count();
     total_testimonials = Testimonial.objects.count()
 
     #number of random objects to fetch
     num_products = 6
-    num_testimonials = 4
+    num_testimonials = 3
+
+    try:
+        #id = random.randrange(1, total_products + 1)  # Adding 1 to include the upper limit
+        featured = random.choice(Product.objects.all())
+    except ObjectDoesNotExist:
+        # Handle the case when the random ID doesn't correspond to an existing product
+        featured = None  # or any other appropriate action
 
     # Generate a random list of indices within the range of the total products
-    random_indices_p = random.sample(range(total_products), num_products)
-    random_indices_t = random.sample(range(total_testimonials), num_testimonials)
+    random_indices_p = random.choices(range(1, total_products + 1), k=6);
+    random_indices_t = random.sample(range(total_testimonials+1), num_testimonials);
 
     # Fetching the random objects using the indices
-    random_products = Product.objects.filter(pk__in=random_indices_p)
-    random_testimonials = Testimonial.objects.filter(pk__in=random_indices_t)
+    random_products = Product.objects.filter(pk__in=random_indices_p);
+    random_testimonials = Testimonial.objects.filter(pk__in=random_indices_t);
 
     context = {
         'random_products': random_products, 
@@ -36,7 +42,7 @@ def home(request):
         'featured' : featured,     
     }
 
-    return render(request, 'store/home.html', context)
+    return render(request, 'home.html', context)
 
 def store(request, category_slug=None):
     products = None
@@ -58,6 +64,7 @@ def store(request, category_slug=None):
 
 
     context = {
+        'title': 'Store',
         'products': paged_products,
         'product_count': product_count,
     }
@@ -73,6 +80,7 @@ def product_detail(request, category_slug, product_slug):
         raise e
     
     context = {
+        'title': single_product.product_name,
         'single_product': single_product,
         'in_cart': in_cart,
     }
@@ -87,6 +95,7 @@ def search(request):
             product_count = products.count()
 
     context = {
+        'title': 'Search',
         'products': products,
         'product_count': product_count,
     }

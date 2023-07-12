@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class=" login-page">
+    <div class="row m-0 login-p2">
+        <div class="row m-0 justify-content-center align-items-center">
+ 
+            <div class="col-lg-5 col-md-7 col-12 login-form p-0">
+                {% if request.GET.command == 'verification' %}
+                    <div class="text-center alert alert-success m-0" role="alert">
+                        Thank you for registering with us. A verification email has been sent to your email address, {{ request.GET.email }}. Please verify it.
+                        <br><br>
+                        Already verified? <a class="text-primary" href="{% url 'login'  %}">Login</a>
+                    </div>
+                {% else %}
+
+                <div class="">
+                    <div class="register-header my-4 text-center">
+                        <div class="mb-3">
+                            <a class="navbar-brand" href="{% url 'home'  %}">
+                                <div class="nav-logo"><span class="my fw-bold" >EC</span></div> 
+                                <!-- <img class="nav-logo" src="{% static 'store/ft_transparent.png'  %}" height="50px"/> -->
+                            </a>
+                        </div>
+                        <h3>
+                            Log In
+                        </h3>
+                    </div>
+                    <div class="card-body px-5">
+                        {% include 'include/alerts.html' %}
+                        <form action="{% url 'login'  %}" method="POST">
+                            {% csrf_token %}
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" aria-hidden="true">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <strong>{{ form.non_field_errors }}</strong>                         
+                            </div> 
+                            {% endif %}
+                            <div class="row mb-3">
+                                <div class="col-sm-12 form-group">
+                                    <div class="">
+                                      <label for="email" class="form-label">Email</label>
+                                      <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="username@mail.com">
+                                    </div>
+                                </div>
+                            </div>   
+                            <div class="row mb-3">
+                                <div class="col-12 form-group">
+                                    <div class="mb-3">
+                                      <label for="password" class="form-label">Password</label>
+                                      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="form-text text-end">
+                                <a class="text-primary" href="{% url 'forgotPassword'  %}">Forgot Password?</a>
+                            </p>
+                            <div class="my-3 row ">
+                                <div class="col text-center">
+                                    <button type="submit" class="btn cart-detail-button">Log In</button>
+                                </div>
+                            </div>
+                            <p class="form-text text-center text-muted">
+                                Don't have an account? <a class="text-primary" href="{% url 'register'  %}">Sign Up</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

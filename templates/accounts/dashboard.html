@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main p-0 p-md-4">
+    <div class="container ">
+        {% include 'include/alerts.html' %}
+        <div class="row">
+            <div class="col-12 col-md-3 mb-3">
+                <!-- Hover added -->
+                <!-- Nav tabs -->
+                <div class="nav list-group" id="myTab" role="tablist">                  
+                    <a class="list-group-item list-group-item-action active" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="true">My Order History</a>
+                    <a class="list-group-item list-group-item-action" id="transaction-tab" data-bs-toggle="tab" data-bs-target="#transaction" type="button" role="tab" aria-controls="transaction" aria-selected="false">Transactions</a>
+                    <a class="list-group-item list-group-item-action" id="returns-tab" data-bs-toggle="tab" data-bs-target="#returns" type="button" role="tab" aria-controls="returns" aria-selected="false">Return and Refunds</a>
+                    <a class="list-group-item list-group-item-action" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</a>
+                    <a class="list-group-item list-group-item-action" id="received-tab" data-bs-toggle="tab" data-bs-target="#received" type="button" role="tab" aria-controls="received" aria-selected="false">Received Orders</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="order" role="tabpanel" aria-labelledby="order-tab"> 
+                            <!-- Hover added -->
+                            <div class="list-group">
+                                <div href="#" class="list-group-item">
+                                    <div class="row py-3 justify-content-center align-items-center g-2">
+                                        <div class="col-12">Order ID: 1234567890 <span class="ms-2"> Order Date: 16 December 2023</span></div>
+                                        <div class="col-12 col-md-6 ">Column</div>
+                                        <div class="col-12 col-md-6">Column</div>
+                                    </div>                                                                                                   
+                                </div>
+                                <div href="#" class="list-group-item py-2">
+                                    <div class="row  g-2">
+                                        <div class="col-12 col-md-8 col-lg-5 mb-2 d-flex gap-3">
+                                                <div class="col-3">
+                                                    <img src="{% static 'photos/profile.jpg'  %}" class="img-fluid rounded" alt="" style="width: 70px; height: 70px;">
+                                                </div>                                                                  
+                                                <div class="col-9 d-grid align-items-center py-2">
+                                                    <div>Product Name</div>
+                                                    <div class="text-muted">Price</div>
+                                                </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-3 mb-2 d-flex align-items-center">
+                                            Column
+                                        </div>
+                                        <div class="col-12 col-lg-4 p-0 d-flex align-items-center">
+                                            <a href="" class="btn btn-outline-primary me-2" href="#" role="button">Track Order</a>
+                                            <a href="" class="btn btn-outline-secondary" href="#" role="button">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div href="#" class="list-group-item">Disabled item</div>
+                                <div href="#" class="list-group-item">Disabled item</div>
+                            </div> 
+                        </div>
+                        <div class="tab-pane" id="transaction" role="tabpanel" aria-labelledby="transaction-tab"> profile </div>
+                        <div class="tab-pane" id="returns" role="tabpanel" aria-labelledby="returns-tab"> returns </div>
+                        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab"> settings </div>
+                        <div class="tab-pane" id="received" role="tabpanel" aria-labelledby="received-tab"> received </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

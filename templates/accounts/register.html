@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container  mt-5 p-2">
+    <div class="row register-page">
+        <div class="register-pic p-0 col-lg-6 col-12">
+            <div class="register-inner d-flex justify-content-center align-items-center">
+                <div class="d-grid">
+                    <div class="text-center mb-3">
+                        <a class="navbar-brand" href="{% url 'home'  %}">
+                            <div class="nav-logo"><span class="my fw-bold" >EC</span></div> 
+                            <!-- <img class="nav-logo" src="{% static 'store/ft_transparent.png'  %}" height="50px"/> -->
+                        </a>
+                    </div>
+                    <div>
+                        <h1 class="landing-title fw-bold">Welcome!</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-12 register-form p-0">
+            <div class="">
+                <div class="register-header my-4 text-center">
+                    <h3>
+                        <!-- <i class="fas fa-sign-in"></i>  -->
+                        Sign Up</h3>
+                </div>
+                <div class="card-body px-5">
+                    {% include 'include/alerts.html' %}
+                    <form action="{% url 'register'  %}" method="POST">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" aria-hidden="true">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>{{ form.non_field_errors }}</strong>                         
+                        </div> 
+                        {% endif %}
+                                      
+                        <div class="row my-3">
+                            <div class="col-md-6 col-sm-12 form-group">
+                                <div>
+                                    {{ form.first_name|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col  form-group">
+                                <div>
+                                    {{ form.last_name|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 col-sm-12 form-group">
+                                <div>
+                                    {{ form.email|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12  form-group">
+                                <div>
+                                    {{ form.phone_number|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="row mb-3">
+                            <div class="col-12 form-group">
+                                <div>
+                                    {{ form.password|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>            
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <div>
+                                    {{ form.confirm_password|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="my-3 row ">
+                            <div class="col text-center">
+                                <button type="submit" class="btn cart-detail-button">Register</button>
+                            </div>
+                        </div>
+                        <p class="form-text text-center text-muted">
+                            Have an account already? <a class="text-primary" href="{% url 'login'  %}">Sign In</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
