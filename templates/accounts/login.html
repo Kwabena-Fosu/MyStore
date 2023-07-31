@@ -42,6 +42,7 @@
                                       <label for="email" class="form-label">Email</label>
                                       <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="username@mail.com">
                                     </div>
+                                    <input type="hidden" name="next" value="{{ request.GET.next }}">
                                 </div>
                             </div>   
                             <div class="row mb-3">

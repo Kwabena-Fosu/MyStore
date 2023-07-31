@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page checkout">
+    <div class="page-cover page-cart text-center-sm">
+        <h1>
+            <i class="me-3 fas fa-money-check-alt"></i> Checkout
+        </h1>
+    </div>
+</div>
+
+
+<!-- Cart start-->
+<div class="container-fluid py-5">
+    {% if not cart_items %}
+    <!-- message -->
+    <div class="text-center">
+        <div class="cart-empty my-3">
+            <h3>Your Shopping cart is empty!</h3>
+        </div>
+        <div class="my-5">
+            <a href="{% url 'store'  %}" class="btn w-100 cart-app-btn px-4 py-2 mt-5">Continue Shopping</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="row px-xl-5">
+        <!-- Billing Form start -->
+        <div class="col-lg-6 col-md-12 mb-5 p-2">
+            <div class="border rounded py-3">
+
+                <div class="register-header my-4 text-center">
+                    <h3>
+                        Billing Address
+                    </h3>
+                </div>
+                <div class="card-body px-5">
+                    {% include 'include/alerts.html' %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" aria-hidden="true">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>{{ form.non_field_errors }}</strong>                         
+                        </div> 
+                        {% endif %}
+                                      
+                        <div class="row my-3">
+                            <div class="col-md-6 col-sm-12 form-group">
+                                <div>
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="first_name" >
+                                </div>
+                            </div>
+                            <div class="col  form-group">
+                                <div>
+                                    <label for="last_name" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="last_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6 col-sm-12 form-group">
+                                <div>
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" >
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12  form-group">
+                                <div>
+                                    <label for="first_name" class="form-label">First Name</label>
+                                    <input type="first_name" class="form-control" name="first_name" >
+                                </div>
+                            </div>
+                        </div>   
+                        <fieldset>
+                            <label class="form-label">Address</label>
+                            <div class="row mb-3">
+                                <div class="col-12 form-group">
+                                    <div>
+                                        <input type="text" class="form-control" name="address_1" placeholder="Address Line 1" required>
+                                    </div>
+                                </div>
+                            </div>            
+                            <div class="row mb-3">
+                                <div class="col-12 form-group">
+                                    <div>
+                                        <input type="text" class="form-control" name="address_2" placeholder="Address Line 2">
+                                    </div>
+                                </div>
+                            </div> 
+                        </fieldset>
+                        <div class="row mb-3">
+                            <div class="col-md-4 col-sm-12 form-group">
+                                <div>
+                                    <label for="" class="form-label">City</label>
+                                    <input type="text" class="form-control" name="city">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12  form-group">
+                                <div>
+                                    <label for="Region" class="form-label">Region</label>
+                                    <input type="text" class="form-control" name="Region">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 form-group">
+                                <div>
+                                    <label for="country" class="form-label">Country</label>
+                                    <input type="text" class="form-control" name="country">
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <div>
+                                    <label for="" class="form-label">Order Note</label>
+                                    <textarea type="text" class="form-control" name="order_note" >
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>  
+                   
+                </div>
+            </div>
+        </div>
+        <!-- Billing Form End -->
+
+        <!--aside to the right: Checkout Form start -->
+        <div class="col-lg-6 col-md-12 p-2 table-responsive">
+            <div class=" container  ">
+                <table class="table-div  p-2 border table mb-0">
+                    <thead class="">
+                        <tr class="border-bottom text-center">
+                            <th>Products</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        {% for cart_item in cart_items %}                        
+                            <tr class="text-center">
+                                <td class="align-middle px-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <img class="rounded-3 me-3" src="{{ cart_item.product.image.url }}" alt="" style="width: 100px;"> 
+                                        </div>
+                                        <div >
+                                            <div class="cart-app-p-name">
+                                                <h6 >
+                                                    <a href="{{ cart_item.product.get_url }}">
+                                                        {{ cart_item.product.product_name }}
+                                                    </a>
+                                                </h6> 
+                                            </div>
+                                            {% if cart_item.variation.all %}
+                                                {% for item in cart_item.variation.all %}                                                    
+                                                    <div class="small text-muted">{{ item.variation_category|capfirst }}: {{ item.variation_value|capfirst }}</div>                               
+                                                {% endfor %}
+                                            {% endif %}                             
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle ">
+                                    <div class="text-center">
+                                        <label for="">{{ cart_item.quantity }}</label>
+                                    </div>
+                                </td>
+                                <td class="align-middle px-3 ">
+                                    <div >
+                                        <h6 class="m-0">
+                                            $ {{ cart_item.subtotal }}
+                                        </h6>
+                                    </div>
+                                    <div class="small text-muted">
+                                        $ {{ cart_item.product.price }} each
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="text-center">
+                <i class="cc fab fa-cc-paypal"></i>
+                <i class="cc fab fa-cc-mastercard"></i>
+                <i class="cc fab fa-cc-visa"></i>
+                <i class="cc fab fa-cc-amex"></i>
+            </div> -->
+            <div class="text-center ">
+                <div class=" my-4">
+                    <button type="submit" class="btn cart-detail-button px-4 py-2 mt-2">Place Order</button>
+                </div>
+                <div class=" my-3">
+                    <a href="{% url 'store'  %}" class="btn cart-app-btn px-4 py-2 mt-1">Continue Shopping</a>
+                </div>
+            </div> 
+        </div>
+        <!-- Checkout Form end -->
+    </div>
+</form>
+</div>
+<!-- Cart end -->
+{% endif %}
+
+{% endblock content %}

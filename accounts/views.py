@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Account
+from carts.models import Cart, CartItem
+from carts.views import _cart_id
 from .forms import RegistrationForm
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
@@ -59,7 +61,50 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
         
         if user is not None:
+            try:
+                cart = Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+
+                if is_cart_item_exists:
+                    cart_item = CartItem.objects.filter(cart=cart)
+
+                    #getting the product variation by cart id
+                    product_variation = []
+
+                    for item in cart_item:
+                        variation = item.variation.all()
+                        product_variation.append(list(variation))
+                    
+                    #get the cart items from the user to access their product variations
+                    cart_item = CartItem.objects.filter(user=user)
+                    existing_variation_list = []
+                    id = []
+                    for item in cart_item:
+                        existing_variation = item.variation.all()
+                        existing_variation_list.append(list(existing_variation))
+                        id.append(item.id)
+
+                    
+                    for pr in product_variation:
+                        if pr in existing_variation_list:
+                            #increase the cart item quantity
+                            index = existing_variation_list.index(pr)
+                            item_id = id[index]
+                            item = CartItem.objects.get(id=item_id)
+                            item.quantity += 1
+                            item.save()
+                        else:
+                            cart_item = CartItem.objects.filter(cart=cart)
+                            for item in cart_item:
+                                item.user = user
+                                item.save()
+            except:
+                pass
+            
             auth.login(request, user)
+            next_page = request.POST.get('next')  
+            if next_page:
+                return redirect(next_page)
             messages.success(request, 'You are now logged in')
             return redirect('dashboard')
         else:
@@ -138,7 +183,7 @@ def resetPassword_validate(request, uidb64, token):
         messages.error(request, 'This link has been expired!')
         return redirect('login')
     
-
+@login_required(login_url='forgotPassword')
 def resetPassword(request):
     if request.method == 'POST':
         password = request.POST['password']

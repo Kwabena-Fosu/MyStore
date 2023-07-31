@@ -85,6 +85,10 @@ table {
     background-image: url(../photos/cart1.jpg);
 }
 
+.checkout {    
+    background-image: url(../photos/credit_cards.jpg);
+}
+
 .page-cover {
     color: rgb(195, 225, 252);
     font-family: 'Playfair Display';

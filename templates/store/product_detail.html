@@ -46,7 +46,7 @@
             </p>  
             <hr />
   
-            <div class="row mb-3">
+            <div class="row">
               <!-- col 1 -->
               {% if single_product.variation_set.colors %}
                 
@@ -62,21 +62,25 @@
               {% endif %}
               
               <!-- col 2 -->
-              <div class="col-md-4 col-12">
-                <label class="fw-bold mb-2">Select Size</label>
-                <select name="size" class="form-select border border-secondary" required>
-                  <option value="" disabled selected>Select</option>
-                  {% for i in single_product.variation_set.sizes %}                    
-                    <option value="{{ i.variation_value|lower }}" class="mb-3">{{ i.variation_value|capfirst }}</option>
-                  {% endfor %}
-                </select>
-              </div>
+              {% if single_product.variation_set.size %}                
+                <div class="col-md-4 col-12">
+                  <label class="fw-bold mb-2">Select Size</label>
+                  <select name="size" class="form-select border border-secondary" required>
+                    <option value="" disabled selected>Select</option>
+                    {% for i in single_product.variation_set.sizes %}                    
+                      <option value="{{ i.variation_value|lower }}" class="mb-3">{{ i.variation_value|capfirst }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endif %}
             </div>
-            <hr />
+            {% if single_product.variation_set.all %}
+              <hr />
+            {% endif %}
             {% if single_product.stock <= 0 %}
-              <h5 class="text-danger" >Out of Stock</h5>
+              <h5 class="text-danger mt-3" >Out of Stock</h5>
               {% else %}
-                <div class="mb-3">
+                <div class="mb-3 mt-3">
                   <button type="submit" class="btn px-4 py-2 cart-detail-button" >
                     <i class="me-2 fas fa-cart-plus"></i> Add to Cart
                   </button>
